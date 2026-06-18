@@ -1,49 +1,65 @@
+<?php
+$podName = getenv('HOSTNAME');
+$appName = getenv('APP_NAME') ?: 'OpenShift PHP App';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>My OpenShift App</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #4facfe, #00f2fe);
-            color: #fff;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-        }
+<meta charset="UTF-8">
+<title><?php echo htmlspecialchars($appName); ?></title>
 
-        .container {
-            margin-top: 15%;
-        }
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-        h1 {
-            font-size: 40px;
-            margin-bottom: 10px;
-        }
+        /* Colorful shaded animated background */
+        background: linear-gradient(-45deg, #ff4e50, #fc913a, #f9d423, #24c6dc, #514a9d);
+        background-size: 400% 400%;
+        animation: gradientBG 10s ease infinite;
+    }
 
-        p {
-            font-size: 18px;
-        }
+    @keyframes gradientBG {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
 
-        .box {
-            background: rgba(0, 0, 0, 0.2);
-            padding: 20px;
-            display: inline-block;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        }
-    </style>
+    .box {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        padding: 30px;
+        border-radius: 15px;
+        width: 60%;
+        text-align: center;
+        color: white;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    }
+
+    h1 {
+        margin-bottom: 10px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+</style>
 </head>
+
 <body>
-
-<div class="container">
     <div class="box">
-        <h1>🚀 Deployment Successful</h1>
-        <p>Your application is running on OpenShift</p>
-        <p>Welcome to your sandbox environment</p>
-    </div>
-</div>
+        <h1>🚀 Hello from OpenShift Sandbox</h1>
+        <p>Your PHP app is running successfully.</p>
 
+        <p><strong>App Name:</strong> <?php echo htmlspecialchars($appName); ?></p>
+        <p><strong>Pod Name:</strong> <?php echo htmlspecialchars($podName); ?></p>
+
+        <p>Beautiful gradient background enabled 🎨</p>
+    </div>
 </body>
 </html>
